@@ -12,6 +12,7 @@ var colorScale = d3.scaleOrdinal().range(["#3957ff", "#d3fe14", "#c9080a", "#fec
 var radiusScale = d3.scaleLinear().range([0,10]);
 
 var clusterLookup = d3.map();
+var clusterList = [];
 
 //import the data from the .csv file
 d3.csv('./banks.csv', function(banks){
@@ -40,6 +41,8 @@ d3.csv('./banks.csv', function(banks){
 
     uniqueList.forEach(function(d, i){
          clusterLookup.set(d, i);
+
+        clusterList.push({cluster:i});
     });
 
     //console.log(clusterLookup.get("China"));
