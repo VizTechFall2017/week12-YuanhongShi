@@ -653,7 +653,7 @@ function drawBars_floor(dataCity,chartMarginleft,chartMargintop){
             svg1.selectAll('#'+currentId).attr('fill', 'yellow');
             svg2.selectAll('#'+currentId)
                 .transition()
-                .duration(1000)
+                .duration(1500)
                 .attr('r', 20)
                 .attr('fill', 'yellow');
         })
@@ -664,7 +664,7 @@ function drawBars_floor(dataCity,chartMarginleft,chartMargintop){
             svg1.selectAll('#' + currentId).attr('fill', 'steelblue');
             svg2.selectAll('#' + currentId)
                 .transition()
-                .duration(1000)
+                .duration(1500)
                 .attr('r', function(d){
                     return d.r;
                 })
@@ -705,7 +705,7 @@ function drawBars_height(dataCity,chartMarginleft,chartMargintop){
             svg1.selectAll('#'+currentId).attr('fill', 'yellow');
             svg2.selectAll('#'+currentId)
                 .transition()
-                .duration(1000)
+                .duration(1500)
                 .attr('r', 20)
                 .attr('fill', 'yellow');
         })
@@ -716,7 +716,7 @@ function drawBars_height(dataCity,chartMarginleft,chartMargintop){
             svg1.selectAll('#' + currentId).attr('fill', 'steelblue');
             svg2.selectAll('#' + currentId)
                 .transition()
-                .duration(1000)
+                .duration(1500)
                 .attr('r', function(d){
                     return d.r;
                 })
@@ -757,7 +757,7 @@ function drawBars_site_area(dataCity,chartMarginleft,chartMargintop){
             svg1.selectAll('#'+currentId).attr('fill', 'yellow');
             svg2.selectAll('#'+currentId)
                 .transition()
-                .duration(1000)
+                .duration(1500)
                 .attr('r', 20)
                 .attr('fill', 'yellow');
         })
@@ -768,7 +768,7 @@ function drawBars_site_area(dataCity,chartMarginleft,chartMargintop){
             svg1.selectAll('#' + currentId).attr('fill', 'steelblue');
             svg2.selectAll('#' + currentId)
                 .transition()
-                .duration(1000)
+                .duration(1500)
                 .attr('r', function(d){
                     return d.r;
                 })
@@ -809,7 +809,7 @@ function drawBars_year(dataCity,chartMarginleft,chartMargintop){
             svg1.selectAll('#'+currentId).attr('fill', 'yellow');
             svg2.selectAll('#'+currentId)
                 .transition()
-                .duration(1000)
+                .duration(1500)
                 .attr('r', 20)
                 .attr('fill', 'yellow');
         })
@@ -820,7 +820,7 @@ function drawBars_year(dataCity,chartMarginleft,chartMargintop){
             svg1.selectAll('#' + currentId).attr('fill', 'steelblue');
             svg2.selectAll('#' + currentId)
                 .transition()
-                .duration(1000)
+                .duration(1500)
                 .attr('r', function(d){
                     return d.r;
                 })
