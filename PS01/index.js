@@ -65,6 +65,7 @@ var arrayList = [
     {long:-122.33207, lat:47.60621, name:'SEATTLE IN WA'} //Seatle
 ];
 
+var centered;
 
 
 //import the data from the .csv file
@@ -226,6 +227,12 @@ function drawMap(selectCity){
             .attr('stroke-width', 1)
             .attr('data-toggle',"tooltip")
             .attr('title', function(d){
+                if (selectCity == 'BOSTON IN MA'){
+                    return d.properties.name;
+                }
+                else {
+                    return 'ZCTA5CE10: '+ d.properties.ZCTA5CE10;
+                }
 
             })
             .on('mouseover', function(d){
@@ -236,11 +243,35 @@ function drawMap(selectCity){
                 d3.select(this)
                     .attr('fill', 'gainsboro');
             })
-            .on('click', function(d){
+            .on('click', mapClicked);
 
-            });
+        ///center the map function//
+        function mapClicked(d){
+            var x, y, k;
 
+            if (d && centered !== d) {
+                var centroid = pathCity.centroid(d);
+                x = centroid[0];
+                y = centroid[1];
+                k = 4;
+                centered = d;
+            } else {
+                x = widthSvg1 / 2;
+                y = heightSvg1 / 2;
+                k = 1;
+                centered = null;
+            }
 
+            svg1.selectAll("path")
+                .classed("active", centered && function(d) { return d === centered; });
+
+            svg1.transition()
+                .duration(750)
+                .attr("transform", "translate(" + widthSvg1 / 2 + "," + heightSvg1 / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
+                .style("stroke-width", 1.5 / k + "px");
+
+        }
+        //end of the center of map function//
 
         svg1.selectAll('circle')
             .data(arrayList)
@@ -533,6 +564,7 @@ d3.select('#compare_data')
     });
 
 
+
 //////////////////////Draw cirlce function/////////////////////
 function drawPoints(dataIn){
     var widthSvg2 = document.getElementById('svg2').clientWidth;
@@ -619,14 +651,24 @@ function drawBars_floor(dataCity,chartMarginleft,chartMargintop){
             var currentId = d3.select(this).attr('id');
             //console.log(currentId);
             svg1.selectAll('#'+currentId).attr('fill', 'yellow');
-            svg2.selectAll('#'+currentId).attr('fill', 'yellow');
+            svg2.selectAll('#'+currentId)
+                .transition()
+                .duration(1000)
+                .attr('r', 20)
+                .attr('fill', 'yellow');
         })
         .on('mouseout', function(d){
             d3.select(this)
                 .attr('fill', 'steelblue');
             var currentId = d3.select(this).attr('id');
             svg1.selectAll('#' + currentId).attr('fill', 'steelblue');
-            svg2.selectAll('#' + currentId).attr('fill', function(d){
+            svg2.selectAll('#' + currentId)
+                .transition()
+                .duration(1000)
+                .attr('r', function(d){
+                    return d.r;
+                })
+                .attr('fill', function(d){
                 return d.fill;
             });
         });
@@ -661,14 +703,24 @@ function drawBars_height(dataCity,chartMarginleft,chartMargintop){
                 .attr('fill', 'yellow');
             var currentId = d3.select(this).attr('id');
             svg1.selectAll('#'+currentId).attr('fill', 'yellow');
-            svg2.selectAll('#'+currentId).attr('fill', 'yellow');
+            svg2.selectAll('#'+currentId)
+                .transition()
+                .duration(1000)
+                .attr('r', 20)
+                .attr('fill', 'yellow');
         })
         .on('mouseout', function(d){
             d3.select(this)
                 .attr('fill', 'steelblue');
             var currentId = d3.select(this).attr('id');
             svg1.selectAll('#' + currentId).attr('fill', 'steelblue');
-            svg2.selectAll('#' + currentId).attr('fill', function(d){
+            svg2.selectAll('#' + currentId)
+                .transition()
+                .duration(1000)
+                .attr('r', function(d){
+                    return d.r;
+                })
+                .attr('fill', function(d){
                 return d.fill;
             });
         });
@@ -703,14 +755,24 @@ function drawBars_site_area(dataCity,chartMarginleft,chartMargintop){
                 .attr('fill', 'yellow');
             var currentId = d3.select(this).attr('id');
             svg1.selectAll('#'+currentId).attr('fill', 'yellow');
-            svg2.selectAll('#'+currentId).attr('fill', 'yellow');
+            svg2.selectAll('#'+currentId)
+                .transition()
+                .duration(1000)
+                .attr('r', 20)
+                .attr('fill', 'yellow');
         })
         .on('mouseout', function(d){
             d3.select(this)
                 .attr('fill', 'steelblue');
             var currentId = d3.select(this).attr('id');
             svg1.selectAll('#' + currentId).attr('fill', 'steelblue');
-            svg2.selectAll('#' + currentId).attr('fill', function(d){
+            svg2.selectAll('#' + currentId)
+                .transition()
+                .duration(1000)
+                .attr('r', function(d){
+                    return d.r;
+                })
+                .attr('fill', function(d){
                 return d.fill;
             });
         });
@@ -745,14 +807,24 @@ function drawBars_year(dataCity,chartMarginleft,chartMargintop){
                 .attr('fill', 'yellow');
             var currentId = d3.select(this).attr('id');
             svg1.selectAll('#'+currentId).attr('fill', 'yellow');
-            svg2.selectAll('#'+currentId).attr('fill', 'yellow');
+            svg2.selectAll('#'+currentId)
+                .transition()
+                .duration(1000)
+                .attr('r', 20)
+                .attr('fill', 'yellow');
         })
         .on('mouseout', function(d){
             d3.select(this)
                 .attr('fill', 'steelblue');
             var currentId = d3.select(this).attr('id');
             svg1.selectAll('#' + currentId).attr('fill', 'steelblue');
-            svg2.selectAll('#' + currentId).attr('fill', function(d){
+            svg2.selectAll('#' + currentId)
+                .transition()
+                .duration(1000)
+                .attr('r', function(d){
+                    return d.r;
+                })
+                .attr('fill', function(d){
                 return d.fill;
             });
         });
